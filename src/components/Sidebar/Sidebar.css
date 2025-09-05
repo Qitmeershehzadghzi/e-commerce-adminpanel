@@ -1,0 +1,26 @@
+    .navlink-1, .navlink-2, .navlink-3 {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .navlink-1:hover, .navlink-2:hover, .navlink-3:hover {
+        background-color: #e9ecef;
+    }
+
+    .imag-1, .imag-2, .imag-3 {
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .para-1, .para-2, .para-3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .navlink-1.active, .navlink-2.active, .navlink-3.active {
+        background-color: #007bff;
+        color: white;
+    }   
