@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import './Login.css'
 import axios from 'axios'
 import { backendUrl } from '../../App'
+import { toast } from 'react-toastify'
 
-const Login = () => {
+const Login = ({setToken}) => {
   const [Email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -14,9 +15,15 @@ const Login = () => {
         email: Email,   // lowercase backend expect karta hai
         password
       })
-      console.log("✅ Login Response:", response)
+if (response.data.success) {
+  setToken(response.data.token)
+}
+else{
+  toast.error(response.data.message)
+}
     } catch (error) {
-      console.log("❌ Error:", error.response?.data || error.message)
+      console.log("❌ Error:", error.message)
+      toast.error(error.message)
     }
   }
 
