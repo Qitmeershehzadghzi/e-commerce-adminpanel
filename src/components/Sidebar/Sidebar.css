@@ -1,1 +1,30 @@
- 
+
+
+.navlink-1, .navlink-2, .navlink-3 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  color: #374151;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navlink-1.active, .navlink-2.active, .navlink-3.active,
+.navlink-1:hover, .navlink-2:hover, .navlink-3:hover {
+  background: #6366f1;
+  color: #fff;
+}
+
+.imag-1, .imag-2, .imag-3 {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.para-1, .para-2, .para-3 {
+  margin: 0;
+  font-size: 1.05rem;
+}

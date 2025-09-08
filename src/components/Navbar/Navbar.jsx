@@ -1,15 +1,19 @@
 import React from 'react'
-import './Navbar.css'
-import {assets} from '../../assets/admin_assets/assets'
+import { assets } from '../../assets/admin_assets/assets'
 import { NavLink } from 'react-router-dom'
-const Navbar = ({setToken}) => {
-  return (
-    <div className='div-1'>
-      <NavLink to={'/'}>
 
-      <img className='image-1' src={assets.logo} alt="" />
+const Navbar = ({ setToken }) => {
+  return (
+    <div className="flex justify-between items-center bg-white px-6 py-3 shadow-md">
+      <NavLink to={'/login'}>
+        <img className="w-32" src={assets.logo} alt="" />
       </NavLink>
-      <button onClick={()=>setToken('')} className='but-1'>Logout</button>
+      <button
+        onClick={() => setToken('')}
+        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+      >
+        Logout
+      </button>
     </div>
   )
 }

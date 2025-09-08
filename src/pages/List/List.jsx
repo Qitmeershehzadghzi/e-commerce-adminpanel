@@ -1,9 +1,87 @@
-import React from 'react'
-import './List.css'
-const List = () => {
+import React, { useEffect, useState } from 'react'
+import { backendUrl, currency } from '../../App'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
+const List = ({ token }) => {
+  const [List, setList] = useState([])
+
+  const fetchList = async () => {
+    try {
+      const response = await axios.get(backendUrl + '/product/list')
+      if (response.data.success) {
+        setList(response.data.productss)
+      } else {
+        toast.error(response.data.message)
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    }
+  }
+
+
+const removeProduct = async (id) => {
+  try {
+    const response = await axios.delete(`${backendUrl}/product/remove/${id}`, {
+      headers: { token }
+    });
+
+    if (response.data.success) {
+      toast.success(response.data.message);
+      await fetchList();
+    } else {
+      toast.error(response.data.message);
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
+
+
+  useEffect(() => {
+    fetchList()
+  }, [])
+
   return (
-    <div>
-      
+    <div className="p-6">
+      <p className="mb-4 text-xl font-semibold">All Product List</p>
+
+      {/* Table Header */}
+      <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-2 px-4 bg-gray-100 rounded-md font-medium text-gray-700">
+        <b>Image</b>
+        <b>Name</b>
+        <b>Category</b>
+        <b>Price</b>
+        <b className="text-center">Action</b>
+      </div>
+
+      {/* Product Rows */}
+      <div className="mt-2 flex flex-col gap-3">
+        {Array.isArray(List) &&
+          List.map((item, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center bg-white p-3 rounded-md shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={item.images?.[0]}
+                alt=""
+                className="w-16 h-16 object-cover rounded-md border"
+              />
+              <p className="font-medium text-gray-800">{item.name}</p>
+              <p className="text-gray-600">{item.category}</p>
+              <p className="font-semibold text-green-600">
+                {item.price} {currency}
+              </p>
+              <button onClick={()=>removeProduct(item._id)} className="px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600">
+                X
+              </button>
+            </div>
+          ))}
+      </div>
     </div>
   )
 }
