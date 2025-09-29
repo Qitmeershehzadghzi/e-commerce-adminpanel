@@ -35,7 +35,7 @@ const Add = () => {
       if (image3) formData.append('images', image3)
       if (image4) formData.append('images', image4)
 
-      const response = await axios.post(`${backendUrl}/product/add`, formData, {
+      const response = await axios.post(`${backendUrl}product/add`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           token: localStorage.getItem('token'),

@@ -9,7 +9,7 @@ const List = ({ token }) => {
   // Fetch Products
   const fetchList = async () => {
     try {
-      const response = await axios.get(backendUrl + '/product/list')
+      const response = await axios.get(backendUrl + 'product/list')
       if (response.data.success) {
         setList(response.data.productss)
       } else {
@@ -24,7 +24,7 @@ const List = ({ token }) => {
   // Remove Product
   const removeProduct = async (id) => {
     try {
-      const response = await axios.delete(`${backendUrl}/product/remove/${id}`, {
+      const response = await axios.delete(`${backendUrl}product/remove/${id}`, {
         headers: { token }
       })
 

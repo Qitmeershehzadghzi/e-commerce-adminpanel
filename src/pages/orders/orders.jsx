@@ -14,7 +14,7 @@ const Orders = ({ token }) => {
     }
     try {
       const response = await axios.post(
-        backendUrl + '/order/list',
+        backendUrl + 'order/list',
         {},
         { headers: { token } }
       )
@@ -32,7 +32,7 @@ const Orders = ({ token }) => {
   const statusHandler = async (e, orderId) => {
     try {
       const response = await axios.post(
-        backendUrl + '/order/status',
+        backendUrl + 'order/status',
         { orderId, status: e.target.value },
         { headers: { token } }
       )
